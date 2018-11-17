@@ -19,3 +19,10 @@ Route::get('maintenance', function () {
 Route::get('/make',function(){
    return App\Admin::create(['name'=>'admin','password'=>bcrypt(123456),'email'=>'admin@admin.com']);
 });
+
+
+		Route::get('lang/{lang}', function ($lang) {
+				session()->has('lang') ? session()->forget('lang') :'';
+				$lang == 'ar' ? session()->put('lang', 'ar') : session()->put('lang', 'en');
+				return back();
+		});
